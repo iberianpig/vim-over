@@ -410,22 +410,9 @@ endfunction
 function! s:base.__init()
 	call self.__init_variables()
 	call self.hl_cursor_off()
-	if !hlexists(self.highlights.cursor)
-		if s:_is_valid_highlight("Cursor")
-			execute "highlight link " . self.highlights.cursor . " Cursor"
-		else
-			" Workaround by CUI Vim Cursor Highlight
-			" issues #92
-			" https://github.com/osyo-manga/vital-over/issues/92
-			execute "highlight " . self.highlights.cursor . " term=reverse cterm=reverse gui=reverse"
-		endif
-	endif
-	if !hlexists(self.highlights.cursor_on)
-		execute "highlight link " . self.highlights.cursor_on . " " . self.highlights.cursor
-	endif
-	if !hlexists(self.highlights.cursor_insert)
-		execute "highlight " . self.highlights.cursor_insert . " cterm=underline term=underline gui=underline"
-	endif
+  execute "highlight " . self.highlights.cursor . " term=reverse cterm=reverse gui=reverse"
+  execute "highlight " . self.highlights.cursor_on . " term=reverse cterm=reverse gui=reverse"
+  execute "highlight " . self.highlights.cursor_insert . " cterm=underline term=underline gui=underline"
 endfunction
 
 
